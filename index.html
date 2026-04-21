@@ -411,14 +411,97 @@
 
   <script>
     const PRODUCTS = [
-      { id: 1, name: '	
-Princes Orange Juice, 24 x 200ml', category: 'Juice', price: 15.99, rating: 4.8, badge: 'Best Seller', image: 'https://m.media-amazon.com/images/I/71ZxUoR5YWL._AC_SL1500_.jpg' },
-      { id: 2, name: 'Classic Hoodie', category: 'Clothing', price: 42, rating: 4.7, badge: 'New', image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80' },
-      { id: 3, name: 'Smart Watch', category: 'Electronics', price: 129, rating: 4.9, badge: 'Hot Deal', image: 'https://images.unsplash.com/photo-1517420879524-86d64ac2f339?auto=format&fit=crop&w=900&q=80' },
-      { id: 4, name: 'Leather Bag', category: 'Accessories', price: 89, rating: 4.6, badge: 'Premium', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80' },
-      { id: 5, name: 'Noise-Cancelling Headphones', category: 'Electronics', price: 149, rating: 4.9, badge: 'Top Rated', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80' },
-      { id: 6, name: 'Everyday T-Shirt', category: 'Clothing', price: 22, rating: 4.5, badge: 'Value', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80' },
-    ];
+  {
+    id: 1,
+    name: 'Red Bull Lilac Edition Sugarfree Grapefruit & Blossom 250ml 12 Pack',
+    category: 'Drinks',
+    price: 23.21,
+    rating: 4.8,
+    badge: 'Best Seller',
+    image: 'https://m.media-amazon.com/images/I/71z7kXGkTLL._AC_SL1500_.jpg'
+  },
+  {
+    id: 2,
+    name: 'Red Bull Winter Iced Vanilla Berry Edition 12x250ml',
+    category: 'Drinks',
+    price: 24.21,
+    rating: 4.7,
+    badge: 'New',
+    image: 'https://m.media-amazon.com/images/I/71Y0hZ6a7RL._AC_SL1500_.jpg'
+  },
+  {
+    id: 3,
+    name: 'Red Bull Summer Edition Curuba Elderflower 250ml x12',
+    category: 'Drinks',
+    price: 24.77,
+    rating: 4.9,
+    badge: 'Hot',
+    image: 'https://m.media-amazon.com/images/I/61wG0s1j9VL._AC_SL1500_.jpg'
+  },
+  {
+    id: 4,
+    name: 'Ariel Washing Powder Professional 9.1KG 140 Wash',
+    category: 'Household',
+    price: 36.77,
+    rating: 4.8,
+    badge: 'Popular',
+    image: 'https://m.media-amazon.com/images/I/81cK4+J9xkL._AC_SL1500_.jpg'
+  },
+  {
+    id: 5,
+    name: 'Heinz Salad Cream Original 875ml',
+    category: 'Food',
+    price: 9.98,
+    rating: 4.6,
+    badge: 'Value',
+    image: 'https://m.media-amazon.com/images/I/61Z6bC7l5QL._AC_SL1500_.jpg'
+  },
+  {
+    id: 6,
+    name: 'Rubicon Spring Vits Black Cherry Pomegranate Water 12x500ml',
+    category: 'Drinks',
+    price: 16.65,
+    rating: 4.7,
+    badge: 'Healthy',
+    image: 'https://m.media-amazon.com/images/I/71k0Z4Qh5TL._AC_SL1500_.jpg'
+  },
+  {
+    id: 7,
+    name: 'Tetley Pure Green Tea 20 Teabags',
+    category: 'Food',
+    price: 7.05,
+    rating: 4.6,
+    badge: 'Classic',
+    image: 'https://m.media-amazon.com/images/I/71H0+X8dPCL._AC_SL1500_.jpg'
+  },
+  {
+    id: 8,
+    name: 'Oreo Golden Sandwich Biscuits Vanilla Creme Pack of 16',
+    category: 'Food',
+    price: 24.77,
+    rating: 4.8,
+    badge: 'Best Seller',
+    image: 'https://m.media-amazon.com/images/I/71c7sZ3pY5L._AC_SL1500_.jpg'
+  },
+  {
+    id: 9,
+    name: 'Schweppes Tonic Water Mini Can 150ml x24',
+    category: 'Drinks',
+    price: 19.21,
+    rating: 4.5,
+    badge: 'Popular',
+    image: 'https://m.media-amazon.com/images/I/71z6yF0pZRL._AC_SL1500_.jpg'
+  },
+  {
+    id: 10,
+    name: 'Borwicks Dried Yeast Resealable Jars 6x90g',
+    category: 'Food',
+    price: 13.77,
+    rating: 4.6,
+    badge: 'Essential',
+    image: 'https://m.media-amazon.com/images/I/61X8K3Kx9LL._AC_SL1500_.jpg'
+  }
+];
 
     const state = { search: '', category: 'All', cart: [] };
     const categories = ['All', ...new Set(PRODUCTS.map(p => p.category))];
