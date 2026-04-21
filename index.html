@@ -1,5 +1,649 @@
-<header style="background:black; color:white; padding:20px; text-align:center;">
-  <img src="logo.png" alt="DNV21 LTD" style="height:80px; display:block; margin:auto;">
-  <h1>DNV21 LTD</h1>
-  <p>UK Online Store – WhatsApp Orders</p>
-</header>
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DNV21 LTD UK online store. Premium products, fast service, and WhatsApp ordering." />
+  <title>DNV21 LTD | UK Online Store</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --brand:#0f172a;
+      --brand2:#111827;
+      --accent:#25d366;
+      --gold:#f59e0b;
+      --shadow:0 20px 60px rgba(15,23,42,.08);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:14px 0;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{
+      width:46px;height:46px;object-fit:cover;border-radius:14px;
+      box-shadow:0 10px 24px rgba(15,23,42,.12);
+      background:#fff;
+    }
+    .brand h1{margin:0;font-size:18px;line-height:1.1}
+    .brand p{margin:3px 0 0;color:var(--muted);font-size:12px}
+    .links{display:flex;align-items:center;gap:22px}
+    .links a{font-size:14px;font-weight:700;color:var(--muted)}
+    .btn{
+      border:0;cursor:pointer;border-radius:16px;padding:12px 16px;
+      font-weight:800;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;
+    }
+    .btn:active{transform:scale(.99)}
+    .btn-dark{background:var(--brand);color:#fff}
+    .btn-dark:hover{background:#0b1220}
+    .btn-light{background:#fff;color:var(--text);border:1px solid var(--line)}
+    .btn-light:hover{background:#f8fafc}
+    .icon-btn{
+      width:44px;height:44px;border-radius:16px;border:1px solid var(--line);
+      background:#fff;cursor:pointer;display:inline-grid;place-items:center;
+    }
+    .mobile-toggle{display:none}
+
+    .hero{
+      padding:44px 0 24px;
+      display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--brand);color:#fff;padding:10px 16px;
+      border-radius:999px;font-size:13px;font-weight:800;margin-bottom:18px;
+    }
+    .hero h2{
+      margin:0;
+      font-size:clamp(40px,6vw,68px);
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+    .hero p{
+      margin:16px 0 0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.8;
+      max-width:58ch;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .stats{
+      margin-top:26px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+      max-width:580px;
+    }
+    .stat,.deal,.product,.checkout-box,.feature{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:0 8px 28px rgba(15,23,42,.04);
+    }
+    .stat{padding:16px}
+    .stat strong{display:block;margin-top:10px;font-size:14px}
+    .stat span{color:var(--muted);font-size:12px}
+    .hero-image{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:12px;
+      box-shadow:var(--shadow);
+    }
+    .hero-image img{
+      height:460px;width:100%;object-fit:cover;border-radius:24px;
+    }
+
+    .deal-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+      margin:10px 0 6px;
+    }
+    .deal{padding:18px}
+    .deal h3{margin:10px 0 6px;font-size:16px}
+    .deal p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+
+    .section-head{
+      display:flex;align-items:end;justify-content:space-between;gap:18px;
+      margin-top:34px;margin-bottom:16px;
+    }
+    .section-head h2{margin:0;font-size:30px;letter-spacing:-.03em}
+    .section-head p{margin:8px 0 0;color:var(--muted)}
+    .controls{display:flex;gap:12px;flex-wrap:wrap}
+    .search{
+      display:flex;align-items:center;gap:10px;min-width:280px;
+      background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 14px;
+    }
+    .search input{
+      width:100%;border:0;outline:none;padding:13px 0;font-size:14px;background:transparent;
+    }
+    select{
+      border:1px solid var(--line);border-radius:16px;padding:13px 14px;
+      background:#fff;min-width:180px;font-weight:700;outline:none;
+    }
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 8px}
+    .chip{
+      border:1px solid var(--line);background:#fff;color:var(--muted);
+      font-weight:800;cursor:pointer;border-radius:999px;padding:10px 16px;
+    }
+    .chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:22px 0 40px}
+    .product{overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+    .product:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .product .image-wrap{position:relative}
+    .product img{height:260px;width:100%;object-fit:cover}
+    .badge{
+      position:absolute;top:14px;left:14px;background:#fff;border-radius:999px;
+      padding:7px 12px;font-size:12px;font-weight:900;
+      box-shadow:0 10px 24px rgba(15,23,42,.12);
+    }
+    .product .body{padding:18px}
+    .meta{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+    .category{
+      color:#94a3b8;text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:.12em;
+    }
+    .rating{
+      display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;
+      background:#fffbeb;color:#d97706;font-weight:900;font-size:13px;
+    }
+    .product h3{margin:8px 0 0;font-size:18px}
+    .product-footer{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-top:18px;flex-wrap:wrap;
+    }
+    .price{font-size:26px;font-weight:900;letter-spacing:-.03em}
+    .mini-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
+    .banner{
+      margin:8px 0 40px;
+      background:linear-gradient(135deg,#0f172a 0%,#1f2937 100%);
+      color:#fff;
+      border-radius:32px;
+      padding:28px;
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:20px;
+      align-items:center;
+    }
+    .banner h2{margin:0;font-size:28px}
+    .banner p{color:rgba(255,255,255,.78);margin:10px 0 0;line-height:1.8}
+    .banner-grid{display:grid;gap:12px}
+    .banner-card{
+      background:rgba(255,255,255,.1);
+      border-radius:20px;
+      padding:16px;
+    }
+    .banner-card strong{display:block}
+    .banner-card span{display:block;margin-top:6px;color:rgba(255,255,255,.8);font-size:14px}
+
+    .footer{padding:20px 0 40px;color:var(--muted);font-size:14px}
+
+    .drawer-backdrop{
+      position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:100;display:none;
+    }
+    .drawer-backdrop.open{display:block}
+    .drawer{
+      position:fixed;top:0;right:0;width:min(440px,100%);height:100%;z-index:101;background:#fff;
+      border-left:1px solid var(--line);box-shadow:-30px 0 60px rgba(15,23,42,.16);
+      transform:translateX(100%);transition:transform .24s ease;
+      display:flex;flex-direction:column;
+    }
+    .drawer.open{transform:translateX(0)}
+    .drawer-head,.drawer-foot{padding:18px;border-bottom:1px solid var(--line)}
+    .drawer-foot{
+      border-bottom:0;border-top:1px solid var(--line);margin-top:auto;background:#f8fafc
+    }
+    .drawer-body{padding:16px 18px;overflow:auto;display:grid;gap:14px}
+    .checkout-box{padding:16px;background:#fff;border:1px solid var(--line);border-radius:24px}
+    .checkout-row{display:flex;justify-content:space-between;gap:16px;font-size:14px;margin:10px 0}
+    .checkout-row.total{border-top:1px solid var(--line);padding-top:12px;margin-top:12px;font-weight:900;font-size:18px}
+    .basket-item{
+      display:grid;grid-template-columns:76px 1fr;gap:12px;
+      border:1px solid var(--line);border-radius:22px;padding:10px;
+    }
+    .basket-item img{width:76px;height:76px;object-fit:cover;border-radius:16px}
+    .basket-item h4{margin:0;font-size:15px}
+    .basket-item p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .qty-row{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .qty-btn{
+      width:34px;height:34px;border-radius:12px;border:1px solid var(--line);
+      background:#fff;cursor:pointer;font-size:18px;line-height:1;
+    }
+    .qty{min-width:26px;text-align:center;font-weight:900}
+    .empty{
+      border:1px dashed var(--line);border-radius:22px;padding:30px;text-align:center;
+      color:var(--muted);background:#fafafa;
+    }
+
+    .floating-whatsapp{
+      position:fixed;right:20px;bottom:20px;z-index:99;
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--accent);color:#fff;padding:14px 18px;border-radius:999px;
+      box-shadow:0 14px 30px rgba(37,211,102,.25);font-weight:900;
+    }
+
+    @media (max-width:980px){
+      .hero,.banner,.product-grid,.deal-grid,.stats{grid-template-columns:1fr}
+      .hero-image img{height:360px}
+      .section-head{flex-direction:column;align-items:start}
+    }
+    @media (max-width:780px){
+      .links,.nav-cta{display:none}
+      .mobile-toggle{display:inline-grid}
+      .product-grid{grid-template-columns:1fr}
+      .search{min-width:100%}
+      select{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="DNV21 LTD logo">
+        <div>
+          <h1>DNV21 LTD</h1>
+          <p>UK Online Store • WhatsApp Orders</p>
+        </div>
+      </div>
+
+      <nav class="links" id="navLinks">
+        <a href="#products">Products</a>
+        <a href="#deals">Deals</a>
+        <a href="#features">Features</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button class="btn btn-dark" id="openCartTop">Basket (<span id="cartCountTop">0</span>)</button>
+      </div>
+
+      <button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+    </div>
+
+    <div class="container" id="mobileMenu" style="display:none;padding-bottom:16px;">
+      <div style="display:grid;gap:10px;">
+        <a href="#products">Products</a>
+        <a href="#deals">Deals</a>
+        <a href="#features">Features</a>
+        <button class="btn btn-dark" id="openCartMobile">Open Basket</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="pill">Premium UK Store • Free WhatsApp Ordering</div>
+        <h2>Elegant shopping. Simple ordering.</h2>
+        <p>
+          DNV21 LTD is a clean, fast, mobile-friendly online store built to look premium and stay free forever.
+          Customers can browse products, add items to the basket, and complete the order on WhatsApp.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-dark" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+          <button class="btn btn-light" id="heroCartBtn">View Basket</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div>🚚</div>
+            <strong>Fast Delivery</strong>
+            <span>2-3 working days</span>
+          </div>
+          <div class="stat">
+            <div>🔒</div>
+            <strong>Secure Ordering</strong>
+            <span>WhatsApp checkout</span>
+          </div>
+          <div class="stat">
+            <div>⭐</div>
+            <strong>Trusted Brand</strong>
+            <span>Premium customer feel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1400&q=80" alt="DNV21 LTD store showcase">
+      </div>
+    </section>
+
+    <section class="container" id="deals">
+      <div class="deal-grid">
+        <div class="deal">
+          <h3>Free Delivery</h3>
+          <p>On orders over £100.</p>
+        </div>
+        <div class="deal">
+          <h3>24/7 Support</h3>
+          <p>Quick help anytime.</p>
+        </div>
+        <div class="deal">
+          <h3>Easy Returns</h3>
+          <p>30-day return policy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="products">
+      <div class="section-head">
+        <div>
+          <h2>Featured products</h2>
+          <p>Search, filter, add to basket, or buy instantly on WhatsApp.</p>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span style="color:#94a3b8">🔎</span>
+            <input id="searchInput" type="text" placeholder="Search products..." />
+          </label>
+          <select id="categorySelect"></select>
+        </div>
+      </div>
+
+      <div class="chips" id="categoryChips"></div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="container banner" id="features">
+      <div>
+        <h2>Amazon-style feel, WhatsApp backend</h2>
+        <p>
+          This store is designed to look premium while staying free forever. No Stripe. No domain cost.
+          No monthly app fees. Just a polished storefront and direct WhatsApp ordering.
+        </p>
+      </div>
+      <div class="banner-grid">
+        <div class="banner-card"><strong>Customisable</strong><span>Easy to edit</span></div>
+        <div class="banner-card"><strong>Responsive</strong><span>Works on mobile</span></div>
+        <div class="banner-card"><strong>Modern UI</strong><span>Clean styling</span></div>
+      </div>
+    </section>
+
+    <section class="container footer">
+      © <span id="year"></span> DNV21 LTD. All rights reserved.
+    </section>
+  </main>
+
+  <a class="floating-whatsapp" id="floatingWhatsApp" href="#" target="_blank" rel="noopener">💬 WhatsApp Order</a>
+
+  <div class="drawer-backdrop" id="backdrop"></div>
+  <aside class="drawer" id="drawer" aria-label="Shopping basket">
+    <div class="drawer-head">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <div>
+          <h3 style="margin:0;font-size:22px;">Your Basket</h3>
+          <p style="margin:6px 0 0;color:var(--muted);font-size:14px;"><span id="cartCount">0</span> items</p>
+        </div>
+        <button class="icon-btn" id="closeCart" aria-label="Close basket">✕</button>
+      </div>
+    </div>
+
+    <div class="drawer-body">
+      <div id="basketItems"></div>
+
+      <div class="checkout-box">
+        <div class="checkout-row"><span>Subtotal</span><strong id="subtotal">£0.00</strong></div>
+        <div class="checkout-row"><span>Delivery</span><strong id="shipping">£0.00</strong></div>
+        <div class="checkout-row"><span>Discount</span><strong id="discount">-£0.00</strong></div>
+        <div class="checkout-row total"><span>Total</span><span id="total">£0.00</span></div>
+        <button class="btn btn-dark" id="whatsappCheckoutBtn" style="width:100%;margin-top:14px;padding:14px 16px;">Order on WhatsApp</button>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    const PRODUCTS = [
+      { id: 1, name: 'Minimal Sneakers', category: 'Shoes', price: 59, rating: 4.8, badge: 'Best Seller', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80' },
+      { id: 2, name: 'Classic Hoodie', category: 'Clothing', price: 42, rating: 4.7, badge: 'New', image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80' },
+      { id: 3, name: 'Smart Watch', category: 'Electronics', price: 129, rating: 4.9, badge: 'Hot Deal', image: 'https://images.unsplash.com/photo-1517420879524-86d64ac2f339?auto=format&fit=crop&w=900&q=80' },
+      { id: 4, name: 'Leather Bag', category: 'Accessories', price: 89, rating: 4.6, badge: 'Premium', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80' },
+      { id: 5, name: 'Noise-Cancelling Headphones', category: 'Electronics', price: 149, rating: 4.9, badge: 'Top Rated', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80' },
+      { id: 6, name: 'Everyday T-Shirt', category: 'Clothing', price: 22, rating: 4.5, badge: 'Value', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80' },
+    ];
+
+    const state = { search: '', category: 'All', cart: [] };
+    const categories = ['All', ...new Set(PRODUCTS.map(p => p.category))];
+
+    const els = {
+      productGrid: document.getElementById('productGrid'),
+      searchInput: document.getElementById('searchInput'),
+      categorySelect: document.getElementById('categorySelect'),
+      categoryChips: document.getElementById('categoryChips'),
+      basketItems: document.getElementById('basketItems'),
+      drawer: document.getElementById('drawer'),
+      backdrop: document.getElementById('backdrop'),
+      cartCount: document.getElementById('cartCount'),
+      cartCountTop: document.getElementById('cartCountTop'),
+      subtotal: document.getElementById('subtotal'),
+      shipping: document.getElementById('shipping'),
+      discount: document.getElementById('discount'),
+      total: document.getElementById('total'),
+      mobileMenu: document.getElementById('mobileMenu'),
+      floatingWhatsApp: document.getElementById('floatingWhatsApp')
+    };
+
+    function money(value) {
+      return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(value);
+    }
+
+    function whatsappLink(message) {
+      return `https://wa.me/447442192373?text=${encodeURIComponent(message)}`;
+    }
+
+    function openWhatsApp(message) {
+      window.open(whatsappLink(message), '_blank', 'noopener,noreferrer');
+    }
+
+    function openCart() {
+      els.drawer.classList.add('open');
+      els.backdrop.classList.add('open');
+    }
+
+    function closeCart() {
+      els.drawer.classList.remove('open');
+      els.backdrop.classList.remove('open');
+    }
+
+    function addToCart(productId) {
+      const existing = state.cart.find(item => item.id === productId);
+      if (existing) existing.qty += 1;
+      else state.cart.push({ id: productId, qty: 1 });
+      renderCart();
+      openCart();
+    }
+
+    function changeQty(id, delta) {
+      state.cart = state.cart
+        .map(item => item.id === id ? { ...item, qty: item.qty + delta } : item)
+        .filter(item => item.qty > 0);
+      renderCart();
+    }
+
+    function buildBasketMessage(singleProduct) {
+      if (singleProduct) {
+        return `Hello, I want to buy: ${singleProduct.name} (${money(singleProduct.price)}). Please help me place the order.`;
+      }
+      if (!state.cart.length) {
+        return 'Hello, I want to order from DNV21 LTD. My basket is empty right now.';
+      }
+      const itemsText = state.cart.map(item => {
+        const product = PRODUCTS.find(p => p.id === item.id);
+        return `${product.name} x${item.qty}`;
+      }).join(', ');
+      const subtotal = state.cart.reduce((sum, item) => {
+        const product = PRODUCTS.find(p => p.id === item.id);
+        return sum + product.price * item.qty;
+      }, 0);
+      const shipping = subtotal > 0 ? 8 : 0;
+      const discount = subtotal > 150 ? 20 : 0;
+      const total = subtotal + shipping - discount;
+      return `Hello, I want to order from DNV21 LTD. Items: ${itemsText}. Total: ${money(total)}.`;
+    }
+
+    function filteredProducts() {
+      return PRODUCTS.filter(product => {
+        const matchesCategory = state.category === 'All' || product.category === state.category;
+        const matchesSearch = product.name.toLowerCase().includes(state.search.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+    }
+
+    function renderCategories() {
+      els.categorySelect.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+      els.categorySelect.value = state.category;
+
+      els.categoryChips.innerHTML = categories.map(cat =>
+        `<button class="chip ${cat === state.category ? 'active' : ''}" data-cat="${cat}">${cat}</button>`
+      ).join('');
+
+      els.categoryChips.querySelectorAll('.chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.category = btn.dataset.cat;
+          els.categorySelect.value = state.category;
+          renderAll();
+        });
+      });
+    }
+
+    function renderProducts() {
+      const items = filteredProducts();
+      els.productGrid.innerHTML = items.map(product => `
+        <article class="product">
+          <div class="image-wrap">
+            <img src="${product.image}" alt="${product.name}">
+            <div class="badge">${product.badge}</div>
+          </div>
+          <div class="body">
+            <div class="meta">
+              <div>
+                <div class="category">${product.category}</div>
+                <h3>${product.name}</h3>
+              </div>
+              <div class="rating">★ ${product.rating}</div>
+            </div>
+            <div class="product-footer">
+              <div class="price">${money(product.price)}</div>
+              <div class="mini-actions">
+                <button class="btn btn-light buy-now-btn" data-id="${product.id}">Buy Now</button>
+                <button class="btn btn-dark add-btn" data-id="${product.id}">Add to Basket</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      els.productGrid.querySelectorAll('.add-btn').forEach(btn => {
+        btn.addEventListener('click', () => addToCart(Number(btn.dataset.id)));
+      });
+
+      els.productGrid.querySelectorAll('.buy-now-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const product = PRODUCTS.find(p => p.id === Number(btn.dataset.id));
+          openWhatsApp(buildBasketMessage(product));
+        });
+      });
+    }
+
+    function renderCart() {
+      const cartItems = state.cart.map(item => {
+        const product = PRODUCTS.find(p => p.id === item.id);
+        return { ...product, qty: item.qty };
+      });
+
+      const count = state.cart.reduce((sum, item) => sum + item.qty, 0);
+      const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const shipping = subtotal > 0 ? 8 : 0;
+      const discount = subtotal > 150 ? 20 : 0;
+      const total = subtotal + shipping - discount;
+
+      els.cartCount.textContent = count;
+      els.cartCountTop.textContent = count;
+      els.subtotal.textContent = money(subtotal);
+      els.shipping.textContent = money(shipping);
+      els.discount.textContent = `-${money(discount)}`;
+      els.total.textContent = money(total);
+
+      if (!cartItems.length) {
+        els.basketItems.innerHTML = `<div class="empty">Your basket is empty. Add an item or use Buy Now.</div>`;
+        return;
+      }
+
+      els.basketItems.innerHTML = cartItems.map(item => `
+        <div class="basket-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <h4>${item.name}</h4>
+            <p>${money(item.price)}</p>
+            <div class="qty-row">
+              <button class="qty-btn dec" data-id="${item.id}">−</button>
+              <span class="qty">${item.qty}</span>
+              <button class="qty-btn inc" data-id="${item.id}">+</button>
+              <button class="btn btn-light remove" data-id="${item.id}" style="margin-left:auto;padding:9px 12px;">Remove</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      els.basketItems.querySelectorAll('.dec').forEach(btn => btn.addEventListener('click', () => changeQty(Number(btn.dataset.id), -1)));
+      els.basketItems.querySelectorAll('.inc').forEach(btn => btn.addEventListener('click', () => changeQty(Number(btn.dataset.id), 1)));
+      els.basketItems.querySelectorAll('.remove').forEach(btn => btn.addEventListener('click', () => changeQty(Number(btn.dataset.id), -999)));
+    }
+
+    function renderAll() {
+      renderCategories();
+      renderProducts();
+      renderCart();
+    }
+
+    els.searchInput.addEventListener('input', e => {
+      state.search = e.target.value;
+      renderProducts();
+    });
+
+    els.categorySelect.addEventListener('change', e => {
+      state.category = e.target.value;
+      renderAll();
+    });
+
+    document.getElementById('openCartTop').addEventListener('click', openCart);
+    document.getElementById('openCartMobile').addEventListener('click', openCart);
+    document.getElementById('heroCartBtn').addEventListener('click', openCart);
+    document.getElementById('closeCart').addEventListener('click', closeCart);
+    els.backdrop.addEventListener('click', closeCart);
+
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      els.mobileMenu.style.display = els.mobileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    els.floatingWhatsApp.addEventListener('click', e => {
+      e.preventDefault();
+      openWhatsApp('Hello, I want to order from DNV21 LTD.');
+    });
+
+    document.getElementById('whatsappCheckoutBtn').addEventListener('click', () => {
+      openWhatsApp(buildBasketMessage());
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderAll();
+  </script>
+</body>
+</html>
